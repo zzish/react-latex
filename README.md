@@ -14,7 +14,15 @@ $ npm install --save react-latex
 ```js
 var reactLatex = require('react-latex');
 
-reactLatex('Rainbow');
+...
+    render(){
+        return (
+            <h3>
+                <Latex>What is $(3\times 4) \div (5-3)$</Latex>
+            </h3>
+        );
+    }
+...
 ```
 
 ## License
