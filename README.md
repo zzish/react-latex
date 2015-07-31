@@ -12,7 +12,7 @@ $ npm install --save react-latex
 ## Usage
 
 ```js
-var reactLatex = require('react-latex');
+var Latex = require('react-latex');
 
 ...
     render(){
