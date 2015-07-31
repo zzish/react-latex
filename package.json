@@ -1,6 +1,6 @@
 {
   "name": "react-latex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React component to render latex strings",
   "homepage": "",
   "repository": "zzish/react-latex",
