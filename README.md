@@ -1,4 +1,4 @@
-# react-latex [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# react-latex [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] 
 > React component to render latex strings, based on [Katex](https://github.com/Khan/KaTeX)
 
 
@@ -11,6 +11,7 @@ $ npm install --save react-latex
 
 ## Usage
 
+In javascript
 ```js
 var Latex = require('react-latex');
 
@@ -23,6 +24,18 @@ var Latex = require('react-latex');
         );
     }
 ...
+```
+
+Include in your html Katex CSS
+
+```html
+
+<html>
+    <head>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css" rel="stylesheet">
+    </head>
+</html>
+
 ```
 
 ## License
