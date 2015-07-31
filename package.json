@@ -1,6 +1,6 @@
 {
   "name": "react-latex",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React component to render latex strings",
   "homepage": "",
   "repository": "zzish/react-latex",
@@ -41,6 +41,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "katex": "^0.5.0"
+    "katex": "^0.4.0"
   }
 }
