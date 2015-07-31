@@ -1,0 +1,42 @@
+{
+  "name": "react-latex",
+  "version": "0.0.0",
+  "description": "React component to render latex strings",
+  "homepage": "",
+  "repository": "zzish/react-latex",
+  "author": {
+    "name": "Zzish",
+    "email": "developers@zzish.com",
+    "url": "http://www.zzish.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "keywords": [
+    "react",
+    "latex",
+    "zzish",
+    "component"
+  ],
+  "devDependencies": {
+    "babel-core": "^5.5.0",
+    "gulp": "^3.6.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-jscs": "^1.1.0",
+    "gulp-jshint": "^1.5.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^0.4.5",
+    "gulp-plumber": "^1.0.0",
+    "jshint-stylish": "^1.0.0",
+    "react": "^0.13.3",
+    "react-components": "^0.2.0"
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "MIT"
+}
