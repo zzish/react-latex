@@ -1,9 +1,25 @@
 'use strict';
 import assert from 'assert';
-import reactLatex from '../lib';
+import latex from '../lib/latex';
+import React from 'react';
+
+var Test = React.createClass({
+    render: function() {
+        return (
+            React.createElement(latex, null,
+               "What is $\\sqrt{8}$?"
+            )
+        );
+    }
+
+});
+
 
 describe('react-latex', function () {
-    it('should have unit test!', function () {
-        assert(false, 'we expected this package author to add actual unit tests.');
+    it('Should have katex class', function () {
+        var testString = React.renderToStaticMarkup(<Test/>);
+
+        assert.notEqual(-1, testString.indexOf('<span class="katex-mathml">'));
+
     });
 });
