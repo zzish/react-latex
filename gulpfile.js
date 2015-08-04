@@ -8,6 +8,14 @@ var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var babel = require('gulp-babel');
+var browserify = require('gulp-browserify');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+
+var babelify = require('babelify');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
@@ -34,7 +42,7 @@ gulp.task('nsp', function (cb) {
 
 gulp.task('pre-test', function () {
   return gulp.src('lib/**/*.js')    .pipe(babel())
-    
+
     .pipe(istanbul({includeUntested: true}))
     .pipe(istanbul.hookRequire());
 });
@@ -57,8 +65,32 @@ gulp.task('test', ['pre-test'], function (cb) {
 gulp.task('babel', function () {
   return gulp.src('lib/**/*.js')
     .pipe(babel())
+    .pipe(rename('latex.npm.js'))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test']);
+gulp.task('modules', function() {
+    return browserify({
+        entries: './lib/Latex.js',
+        debug: false
+    })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('latex.js'))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('minify', ['modules'], function(){
+    return gulp.src('dist/latex.js')
+        .pipe(uglify({
+            compress: {
+                drop_console: true,
+                unsafe: true
+            }
+        }))
+        .pipe(rename('latex.min.js'))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('prepublish', ['nsp', 'babel', 'modules', 'minify']);
+gulp.task('default', ['test']);

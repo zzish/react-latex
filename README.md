@@ -1,4 +1,4 @@
-# react-latex [![NPM version][npm-image]][npm-url]
+# react-latex [![NPM version][npm-image]][npm-url][![Dependency Status][daviddm-image]][daviddm-url]
 > React component to render latex strings, based on [Katex](https://github.com/Khan/KaTeX)
 
 
