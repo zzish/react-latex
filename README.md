@@ -33,7 +33,7 @@ Include in your html Katex CSS
 
 <html>
     <head>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" rel="stylesheet">
     </head>
 </html>
 

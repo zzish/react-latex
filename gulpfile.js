@@ -2,8 +2,7 @@
 var gulp = require('gulp');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
+var eslint = require('gulp-eslint');
 var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
@@ -29,10 +28,9 @@ var handleErr = function (err) {
 gulp.task('static', function () {
   return gulp.src('**/*.js')
     .pipe(excludeGitignore())
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'))
-    .pipe(jscs())
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
     .on('error', handleErr);
 });
 
