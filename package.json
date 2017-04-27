@@ -25,6 +25,7 @@
     "react": "^15.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
@@ -39,7 +40,7 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build": "babel ./src/latex.js --out-file ./build/latex.js",
+    "build": "mkdir build; babel ./src/latex.js --out-file ./build/latex.js",
     "lint": "eslint ./src/latex.js",
     "prepublish": "npm run build"
   },
