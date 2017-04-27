@@ -22,8 +22,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint react/no-danger: 0 */
 
+// Eslint doesn't like react being in peerDependencies
+//eslint-disable-line
+
 
 var latexString = function latexString(string, options) {
+    // Remove potential HTML
     string = string.replace(/(<([^>]+)>)/gi, "");
     var regularExpression = /\$\$[\s\S]+?\$\$|\$[\s\S]+?\$/g;
 
@@ -91,20 +95,9 @@ var Latex = function (_React$Component) {
     _inherits(Latex, _React$Component);
 
     function Latex() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
         _classCallCheck(this, Latex);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Latex.__proto__ || Object.getPrototypeOf(Latex)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = {
-            children: _propTypes2.default.string,
-            displayMode: _propTypes2.default.bool
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        return _possibleConstructorReturn(this, (Latex.__proto__ || Object.getPrototypeOf(Latex)).apply(this, arguments));
     }
 
     _createClass(Latex, [{
@@ -125,6 +118,10 @@ var Latex = function (_React$Component) {
     return Latex;
 }(_react2.default.Component);
 
+Latex.propTypes = {
+    children: _propTypes2.default.string,
+    displayMode: _propTypes2.default.bool
+};
 Latex.defaultProps = {
     children: "",
     displayMode: false

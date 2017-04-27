@@ -70,7 +70,7 @@ const latexString = (string, options) => {
 };
 
 class Latex extends React.Component {
-    propTypes = {
+    static propTypes = {
         children: PropTypes.string,
         displayMode: PropTypes.bool,
     };
