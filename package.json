@@ -40,7 +40,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register",
     "build": "babel ./src/latex.js --out-file ./build/latex.js",
-    "lint": "eslint ./src/latex.js"
+    "lint": "eslint ./src/latex.js",
+    "prepublish": "npm run build"
   },
   "license": "MIT",
   "dependencies": {
