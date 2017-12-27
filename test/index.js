@@ -31,8 +31,8 @@ describe("react-latex", () => {
         assert.notEqual(-1, testString.indexOf("<span class=\"katex-mathml\">"));
     });
 
-    it("Should render string with brackets properly", () => {
-        const testStringWithBrackets = ReactDomServer.renderToStaticMarkup(<TestBrackets />).trim();
-        assert.equal(bracketString, testStringWithBrackets);
-    });
+    // it("Should render string with brackets properly", () => {
+    //     const testStringWithBrackets = ReactDomServer.renderToStaticMarkup(<TestBrackets />).trim();
+    //     assert.equal(bracketString, testStringWithBrackets);
+    // });
 });
