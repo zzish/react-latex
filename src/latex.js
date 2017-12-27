@@ -1,4 +1,6 @@
-/* eslint react/no-danger: 0 */
+/* @flow */
+/* eslint-disable eslint-plugin-import */
+
 import katex from "katex";
 // Eslint doesn't like react being in peerDependencies
 import React from "react"; //eslint-disable-line
@@ -9,7 +11,7 @@ const latexString = (string, options) => {
     string = string.replace(/(<([^>]+)>)/gi, "");
     const regularExpression = /\$\$[\s\S]+?\$\$|\$[\s\S]+?\$/g;
 
-    const stripDollars = stringToStrip => {
+    const stripDollars = (stringToStrip) => {
         if (stringToStrip[1] === "$") {
             stringToStrip = stringToStrip.slice(2, -2);
         } else {
@@ -19,7 +21,7 @@ const latexString = (string, options) => {
         return stringToStrip;
     };
 
-    const renderLatexString = s => {
+    const renderLatexString = (s) => {
         let renderedString;
         try {
             renderedString = katex.renderToString(s, options);
@@ -55,8 +57,8 @@ const latexString = (string, options) => {
         });
     }
 
-    const processResult = resultToProcess => {
-        const newResult = resultToProcess.map(r => {
+    const processResult = (resultToProcess) => {
+        const newResult = resultToProcess.map((r) => {
             if (r.type === "text") {
                 return r.string;
             }
