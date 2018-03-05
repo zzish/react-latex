@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 1.2.0
+
+* KaTeX updated to 0.9.0
+
 # 1.1.0
 
 * Updated dependencies to React 16
