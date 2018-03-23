@@ -12,6 +12,19 @@ $ npm install --save react-latex
 
 In javascript
 
+### Before using Latex
+Include in your html Katex CSS
+
+```html
+<html>
+    <head>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+    </head>
+</html>
+```
+
+### Inline Latex
+
 ```js
 var Latex = require('react-latex');
 
@@ -26,15 +39,24 @@ var Latex = require('react-latex');
 ...
 ```
 
-Include in your html Katex CSS
 
-```html
-<html>
-    <head>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
-    </head>
-</html>
+### Block Latex
+
+```js
+var Latex = require('react-latex');
+
+...
+    render(){
+        return (
+            <h3>
+                <Latex displayMode={true}>$$(3\times 4) \div (5-3)$$</Latex>
+            </h3>
+        );
+    }
+...
 ```
+
+
 
 ## License
 
