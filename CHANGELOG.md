@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 1.3.0
+
+* KaTeX updated to 0.10.2
+
 # 1.2.0
 
 * KaTeX updated to 0.9.0
