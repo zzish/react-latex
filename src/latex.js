@@ -75,19 +75,67 @@ class Latex extends React.Component {
     static propTypes = {
         children: PropTypes.string,
         displayMode: PropTypes.bool,
+        leqno: PropTypes.bool,
+        fleqn: PropTypes.bool,
+        throwOnError: PropTypes.bool,
+        errorColor: PropTypes.string,
+        macros: PropTypes.object,
+        minRuleThickness: PropTypes.number,
+        colorIsTextColor: PropTypes.bool,
+        maxSize: PropTypes.number,
+        maxExpand: PropTypes.number,
+        strict: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.func]),
+        trust: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     };
 
     static defaultProps = {
         children: "",
         displayMode: false,
+        output: "htmlAndMathml",
+        leqno: false,
+        fleqn: false,
+        throwOnError: true,
+        errorColor: "#cc0000",
+        macros: {},
+        minRuleThickness: 0,
+        colorIsTextColor: false,
+        strict: "warn",
+        trust: false,
     };
 
     render() {
-        const { children, displayMode } = this.props;
+        const {
+            children,
+            displayMode,
+            leqno,
+            fleqn,
+            throwOnError,
+            errorColor,
+            macros,
+            minRuleThickness,
+            colorIsTextColor,
+            maxSize,
+            maxExpand,
+            strict,
+            trust,
+        } = this.props;
         return (
             <span
                 dangerouslySetInnerHTML={{
-                    __html: latexString(children, { displayMode }),
+                    __html: latexString(children, {
+                        displayMode,
+                        leqno,
+                        fleqn,
+                        throwOnError,
+                        errorColor,
+                        macros,
+                        minRuleThickness,
+                        colorIsTextColor,
+                        maxSize,
+                        maxExpand,
+                        strict,
+                        trust,
+                    }),
                 }}
             />
         );

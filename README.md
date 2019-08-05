@@ -13,12 +13,16 @@ $ npm install --save react-latex
 In javascript
 
 ### Before using Latex
+
 Include in your html Katex CSS
 
 ```html
 <html>
     <head>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+        <link
+            href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css"
+            rel="stylesheet"
+        />
     </head>
 </html>
 ```
@@ -39,7 +43,6 @@ var Latex = require('react-latex');
 ...
 ```
 
-
 ### Block Latex
 
 ```js
@@ -56,7 +59,9 @@ var Latex = require('react-latex');
 ...
 ```
 
+### Options for Katex
 
+A number of options are now supported. For a comprehensive list please visit: [here](https://katex.org/docs/options.html)
 
 ## License
 

@@ -2,5 +2,8 @@
     "extends": "zzish",
     "env": {
         "mocha": true
+    },
+    "rules": {
+        "react/no-danger": false
     }
 }
