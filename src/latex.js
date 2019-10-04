@@ -9,22 +9,27 @@ import PropTypes from "prop-types";
 const latexString = (string, options) => {
     // Remove potential HTML
     string = string.replace(/(<([^>]+)>)/gi, "");
-    const regularExpression = /\$\$[\s\S]+?\$\$|\$[\s\S]+?\$/g;
+    const regularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\$[\s\S]+?\$/g;
+    const blockRegularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]/g;
 
-    const stripDollars = (stringToStrip) => {
-        if (stringToStrip[1] === "$") {
-            stringToStrip = stringToStrip.slice(2, -2);
-        } else {
-            stringToStrip = stringToStrip.slice(1, -1);
-        }
+    const stripDollars = stringToStrip =>
+        stringToStrip[0] === "$" && stringToStrip[1] !== "$"
+            ? stringToStrip.slice(1, -1)
+            : stringToStrip.slice(2, -2);
 
-        return stringToStrip;
-    };
+    const getDisplay = stringToDisplay =>
+        stringToDisplay.match(blockRegularExpression)
+            ? "block" 
+            : "inline";  
 
-    const renderLatexString = (s) => {
+    const renderLatexString = (s, t) => {
         let renderedString;
         try {
-            renderedString = katex.renderToString(s, options);
+            renderedString = katex.renderToString(s,
+            t === "block" 
+                ? { ...options, displayMode: true } 
+                : options
+            );
         } catch (err) {
             console.error("couldn`t convert string", s);
             return s;
@@ -46,7 +51,7 @@ const latexString = (string, options) => {
             if (latexMatch[index]) {
                 result.push({
                     string: stripDollars(latexMatch[index]),
-                    type: "latex",
+                    type: getDisplay(latexMatch[index]),
                 });
             }
         });
@@ -57,12 +62,12 @@ const latexString = (string, options) => {
         });
     }
 
-    const processResult = (resultToProcess) => {
+    const processResult = resultToProcess => {
         const newResult = resultToProcess.map((r) => {
             if (r.type === "text") {
                 return r.string;
             }
-            return renderLatexString(r.string);
+            return renderLatexString(r.string, r.type);
         });
 
         return newResult.join(" ");
