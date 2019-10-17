@@ -12,23 +12,20 @@ const latexString = (string, options) => {
     const regularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\$[\s\S]+?\$/g;
     const blockRegularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]/g;
 
-    const stripDollars = stringToStrip =>
-        stringToStrip[0] === "$" && stringToStrip[1] !== "$"
+    const stripDollars = (stringToStrip) =>
+        (stringToStrip[0] === "$" && stringToStrip[1] !== "$"
             ? stringToStrip.slice(1, -1)
-            : stringToStrip.slice(2, -2);
+            : stringToStrip.slice(2, -2));
 
-    const getDisplay = stringToDisplay =>
-        stringToDisplay.match(blockRegularExpression)
-            ? "block" 
-            : "inline";  
+    const getDisplay = (stringToDisplay) =>
+        (stringToDisplay.match(blockRegularExpression) ? "block" : "inline");
 
     const renderLatexString = (s, t) => {
         let renderedString;
         try {
-            renderedString = katex.renderToString(s,
-            t === "block" 
-                ? { ...options, displayMode: true } 
-                : options
+            renderedString = katex.renderToString(
+                s,
+                t === "block" ? Object.assign(options, { displayMode: true }) : options
             );
         } catch (err) {
             console.error("couldn`t convert string", s);
@@ -62,7 +59,7 @@ const latexString = (string, options) => {
         });
     }
 
-    const processResult = resultToProcess => {
+    const processResult = (resultToProcess) => {
         const newResult = resultToProcess.map((r) => {
             if (r.type === "text") {
                 return r.string;
