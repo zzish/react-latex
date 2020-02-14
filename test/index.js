@@ -29,10 +29,25 @@ describe("react-latex", () => {
     it("Should have katex class", () => {
         const testString = ReactDomServer.renderToStaticMarkup(<Test />);
         assert.notEqual(-1, testString.indexOf("<span class=\"katex-mathml\">"));
+        assert.equal('a', testString);
     });
 
     // it("Should render string with brackets properly", () => {
     //     const testStringWithBrackets = ReactDomServer.renderToStaticMarkup(<TestBrackets />).trim();
     //     assert.equal(bracketString, testStringWithBrackets);
     // });
+});
+
+
+class TestLtGt extends React.Component {
+    render () {
+        return React.createElement(latex, null,  "compact size (< 20'), spectral types >M4");
+    }
+}
+
+describe("react-latex2", () => {
+    it("It should not mess up gt and lt", () => {
+        const testString = ReactDomServer.renderToStaticMarkup(<TestLtGt />);
+        assert.equal( testString, "<span>compact size (&lt; 20&#x27;), spectral types &gt;M4</span>");
+    });
 });
