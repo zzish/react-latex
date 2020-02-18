@@ -24,7 +24,7 @@ const latexify = (string, options) => {
             // returns HTML markup
             renderedString = katex.renderToString(
                 s,
-                t === "block" ? Object.assign(options, { displayMode: true }) : options
+                t === "block" ? Object.assign({ displayMode: true }, options) : options
             );
         } catch (err) {
             console.error("couldn`t convert string", s);
