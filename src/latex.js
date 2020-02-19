@@ -6,9 +6,7 @@ import katex from "katex";
 import React from "react"; //eslint-disable-line
 import PropTypes from "prop-types";
 
-const latexString = (string, options) => {
-    // Remove potential HTML
-    string = string.replace(/(<([^>]+)>)/gi, "");
+const latexify = (string, options) => {
     const regularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\$[\s\S]+?\$/g;
     const blockRegularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]/g;
 
@@ -23,9 +21,10 @@ const latexString = (string, options) => {
     const renderLatexString = (s, t) => {
         let renderedString;
         try {
+            // returns HTML markup
             renderedString = katex.renderToString(
                 s,
-                t === "block" ? Object.assign(options, { displayMode: true }) : options
+                t === "block" ? Object.assign({ displayMode: true }, options) : options
             );
         } catch (err) {
             console.error("couldn`t convert string", s);
@@ -64,12 +63,13 @@ const latexString = (string, options) => {
             if (r.type === "text") {
                 return r.string;
             }
-            return renderLatexString(r.string, r.type);
+            return (<span dangerouslySetInnerHTML={{__html: renderLatexString(r.string, r.type)}} />);
         });
 
-        return newResult.join(" ");
+        return newResult;
     };
 
+    // Returns list of spans with latex and non-latex strings.
     return processResult(result);
 };
 
@@ -121,26 +121,23 @@ class Latex extends React.Component {
             strict,
             trust,
         } = this.props;
-        return (
-            <span
-                dangerouslySetInnerHTML={{
-                    __html: latexString(children, {
-                        displayMode,
-                        leqno,
-                        fleqn,
-                        throwOnError,
-                        errorColor,
-                        macros,
-                        minRuleThickness,
-                        colorIsTextColor,
-                        maxSize,
-                        maxExpand,
-                        strict,
-                        trust,
-                    }),
-                }}
-            />
-        );
+
+        const renderUs = latexify( children, {displayMode,
+            leqno,
+            fleqn,
+            throwOnError,
+            errorColor,
+            macros,
+            minRuleThickness,
+            colorIsTextColor,
+            maxSize,
+            maxExpand,
+            strict,
+            trust} );
+        renderUs.unshift(null);
+        renderUs.unshift('span'); //put everything in a span
+        // spread renderUs out to children args
+        return React.createElement.apply(null, renderUs)        
     }
 }
 
