@@ -4,6 +4,8 @@
         "mocha": true
     },
     "rules": {
-        "react/no-danger": false
+        "react/no-danger": false,
+        "react/no-multi-comp": false,
+        "no-confusing-arrow": 0
     }
 }

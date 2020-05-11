@@ -11,12 +11,12 @@ const latexify = (string, options) => {
     const blockRegularExpression = /\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]/g;
 
     const stripDollars = (stringToStrip) =>
-        (stringToStrip[0] === "$" && stringToStrip[1] !== "$"
+        stringToStrip[0] === "$" && stringToStrip[1] !== "$"
             ? stringToStrip.slice(1, -1)
-            : stringToStrip.slice(2, -2));
+            : stringToStrip.slice(2, -2);
 
     const getDisplay = (stringToDisplay) =>
-        (stringToDisplay.match(blockRegularExpression) ? "block" : "inline");
+        stringToDisplay.match(blockRegularExpression) ? "block" : "inline";
 
     const renderLatexString = (s, t) => {
         let renderedString;
@@ -24,7 +24,7 @@ const latexify = (string, options) => {
             // returns HTML markup
             renderedString = katex.renderToString(
                 s,
-                t === "block" ? Object.assign({ displayMode: true }, options) : options
+                t === "block" ? Object.assign({ displayMode: true }, options) : options,
             );
         } catch (err) {
             console.error("couldn`t convert string", s);
@@ -63,7 +63,9 @@ const latexify = (string, options) => {
             if (r.type === "text") {
                 return r.string;
             }
-            return (<span dangerouslySetInnerHTML={{__html: renderLatexString(r.string, r.type)}} />);
+            return (
+                <span dangerouslySetInnerHTML={{ __html: renderLatexString(r.string, r.type) }} />
+            );
         });
 
         return newResult;
@@ -122,7 +124,8 @@ class Latex extends React.Component {
             trust,
         } = this.props;
 
-        const renderUs = latexify( children, {displayMode,
+        const renderUs = latexify(children, {
+            displayMode,
             leqno,
             fleqn,
             throwOnError,
@@ -133,11 +136,12 @@ class Latex extends React.Component {
             maxSize,
             maxExpand,
             strict,
-            trust} );
+            trust,
+        });
         renderUs.unshift(null);
-        renderUs.unshift('span'); //put everything in a span
+        renderUs.unshift("span"); // put everything in a span
         // spread renderUs out to children args
-        return React.createElement.apply(null, renderUs)        
+        return React.createElement.apply(null, renderUs);
     }
 }
 
