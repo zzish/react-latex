@@ -1,7 +1,4 @@
 {
-    "plugins": ["transform-class-properties"],
-    "presets": [
-        "es2015",
-        "react"
-    ]
+  "plugins": ["@babel/proposal-class-properties"],
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }

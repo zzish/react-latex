@@ -1,52 +1,53 @@
 {
-    "name": "react-latex",
-    "version": "1.6.0",
-    "description": "React component to render latex strings",
-    "repository": "zzish/react-latex",
-    "author": {
-        "name": "Zzish",
-        "email": "developers@zzish.com",
-        "url": "http://www.zzish.com"
-    },
-    "files": [
-        "build"
-    ],
-    "main": "build/latex.js",
-    "keywords": [
-        "react",
-        "latex",
-        "zzish",
-        "component",
-        "react-component",
-        "react-ui"
-    ],
-    "devDependencies": {
-        "babel-cli": "^6.24.1",
-        "babel-core": "^6.24.1",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-react": "^6.24.1",
-        "babel-register": "^6.24.1",
-        "eslint": "^4.14.0",
-        "eslint-config-zzish": "^0.8.0",
-        "eslint-plugin-flowtype": "^2.40.1",
-        "eslint-plugin-import": "^2.8.0",
-        "eslint-plugin-jsx-a11y": "^6.0.3",
-        "eslint-plugin-react": "^7.5.1",
-        "mocha": "^6.2.0",
-        "prettier": "^1.2.2",
-        "prop-types": "^15.5.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0"
-    },
-    "scripts": {
-        "test": "mocha --require babel-register",
-        "build": "mkdir build; babel ./src/latex.js --out-file ./build/latex.js",
-        "lint": "eslint ./src/latex.js",
-        "prepublish": "npm run build"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "katex": "^0.10.2"
-    }
+  "name": "react-latex",
+  "version": "1.6.0",
+  "description": "React component to render latex strings",
+  "repository": "zzish/react-latex",
+  "author": {
+    "name": "Zzish",
+    "email": "developers@zzish.com",
+    "url": "http://www.zzish.com"
+  },
+  "files": [
+    "build"
+  ],
+  "main": "build/latex.js",
+  "keywords": [
+    "react",
+    "latex",
+    "zzish",
+    "component",
+    "react-component",
+    "react-ui"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "eslint": "^4.14.0",
+    "eslint-config-zzish": "^0.8.0",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "mocha": "^7.1.2",
+    "prettier": "^1.2.2",
+    "prop-types": "^15.5.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "scripts": {
+    "test": "mocha --require @babel/register",
+    "build": "mkdir build; babel ./src/latex.js --out-file ./build/latex.js",
+    "lint": "eslint ./src/latex.js",
+    "prepublish": "npm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "katex": "^0.10.2"
+  }
 }
